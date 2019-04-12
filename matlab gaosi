@@ -1,0 +1,15 @@
+sp=rand(3,2)
+nsp=size(sp);
+sn=rand(4,2);
+nsn=size(sn)
+sd=[sp;sn]
+lsd=[true true true false false false false]
+Y=nominal(lsd)
+figure(1);
+subplot(1,2,1)
+plot(sp(1:nsp,1),sp(1:nsp,2),'m+')
+hold on
+plot(sn(1:nsn,1),sn(1:nsn,2),'c*')
+subplot(1,2,2)
+svmStruct=svmtrain(sd,Y,'Kernel_Function','rbf','rbf_sigma',0.3,'method','SMO','showplot',true);
+RD=svmclassify(svmStruct,sd,'showplot',true)
